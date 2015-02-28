@@ -10,10 +10,29 @@
 
   <div class="container">
   
+    
+    
+    <!-- Nav -->
     <ul class="nav nav-tabs">
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "About", about_path %></li>
+      
+      <!-- Sign in/out/up -->
+      <div class="pull-right user-info sign-in-nudge">
+        <small>
+        <% if current_user %>
+          <%= link_to current_user.email, edit_user_registration_path %> | 
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete %></button>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path %> | 
+          <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+        </small>
+      </div>
+
     </ul>
+    
+    
     
     <!-- display flash messages -->
     <% if flash[:notice] %>

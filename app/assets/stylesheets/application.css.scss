@@ -1,2 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// application.html.erb
+.sign-in-nudge {
+  position: relative;
+  top: 10px;
+  left: -10px;
+}

@@ -1,4 +1,8 @@
-<h1><%= @wiki.title %> <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-default nudge-up-5' %></h1>
+<h1>
+    <%= @wiki.title %> 
+    <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-default nudge-up-5' %>
+    <%= link_to "Delete", @wiki, class: 'btn btn-default nudge-up-5', method: :delete, data: { confirm: "Are you sure you want to delete this wiki?" } %>
+</h1>
 <h3><%= @wiki.subtitle %></h3>
 
 <small>Created at: <%= @wiki.created_at %> | Last update: <%= @wiki.updated_at %></small>

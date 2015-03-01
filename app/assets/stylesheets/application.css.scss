@@ -1,6 +1,36 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// position changes, margins, and padding
+.nudge-up-5 {
+  position: relative;
+  top: -5px;
+}
+.nudge-up-10 {
+  position: relative;
+  top: -10px;
+}
+.nudge-up-12 {
+  position: relative;
+  top: -12px;
+}
+.wiki-index-display {
+  padding: 0 10px;
+  margin: 5px 0;
+}
+
+// backgrounds and borders
+.highlighter-gray {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  border: solid 1px #ddd;
+}
+
+// colors
+.text-dark-gray {
+  color: #888;
+}
+
 // application.html.erb
 .sign-in-nudge {
   position: relative;

@@ -1,2 +1,9 @@
-<h1>Wikis#edit</h1>
-<p>Find me in app/views/wikis/edit.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+
+    <h1>Edit Wiki</h1>
+    
+    <%= render partial: "form", locals: { wiki: @wiki } %>
+    
+  </div>
+</div>

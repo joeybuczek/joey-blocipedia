@@ -1,2 +1,9 @@
-<h1>Wikis#new</h1>
-<p>Find me in app/views/wikis/new.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+
+    <h1>New Wiki</h1>
+    
+    <%= render partial: "form", locals: { wiki: @wiki } %>
+    
+  </div>
+</div>

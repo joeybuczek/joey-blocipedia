@@ -1,2 +1,8 @@
-<h1>Wikis#show</h1>
-<p>Find me in app/views/wikis/show.html.erb</p>
+<h1><%= @wiki.title %> <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-default nudge-up-5' %></h1>
+<h3><%= @wiki.subtitle %></h3>
+
+<small>Created at: <%= @wiki.created_at %> | Last update: <%= @wiki.updated_at %></small>
+
+<hr>
+
+<p><%= @wiki.body %></p>

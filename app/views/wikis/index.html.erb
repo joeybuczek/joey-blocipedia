@@ -1,2 +1,10 @@
-<h1>Wikis#index</h1>
-<p>Find me in app/views/wikis/index.html.erb</p>
+<h1>All Wikis <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-default nudge-up-5' %></h1>
+
+<% @wikis.each do |wiki| %>
+  <div class="highlighter-gray wiki-index-display">
+    <h4><%= link_to wiki.title, wiki_path(wiki.id) %></h4>
+    <small class="nudge-up-10"><%= wiki.subtitle %></small>
+    <br/>
+    <small class="nudge-up-12 text-dark-gray"><i>Created <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.name %></i></small>
+  </div>
+<% end %>

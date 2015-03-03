@@ -5,6 +5,12 @@
   <% end %>
 </h1>
 
+<div class="pull-right nudge-down-10">
+  <%= will_paginate @wikis %>
+</div>
+
+<br/><br/>
+
 <% @wikis.each do |wiki| %>
   <div class="highlighter-gray wiki-index-display">
     <h4><%= link_to wiki.title, wiki_path(wiki.id) %></h4>
@@ -13,3 +19,7 @@
     <small class="nudge-up-12 text-dark-gray"><i>Created <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.name %></i></small>
   </div>
 <% end %>
+
+<%= will_paginate @wikis %>
+
+<br/><br/>

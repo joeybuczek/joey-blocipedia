@@ -1,4 +1,9 @@
-<h1>All Wikis <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-default nudge-up-5' %></h1>
+<h1>
+  All Wikis
+  <% if policy(Wiki.new).create? %>
+    <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-default nudge-up-5' %>
+  <% end %>
+</h1>
 
 <% @wikis.each do |wiki| %>
   <div class="highlighter-gray wiki-index-display">

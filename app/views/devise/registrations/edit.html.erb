@@ -39,6 +39,18 @@
         <%= f.submit "Update", class: 'btn btn-default' %>
       </div>
     <% end %>
+    
+    <h3>Account Level</h3>
+    
+    <div class="form-group">
+      <p>Your current account level is set to <strong><%= current_user.role %></strong>.</p>
+      <% if current_user.role == 'premium' %>
+        <button class="btn btn-danger">Downgrade my account</button>
+      <% elsif current_user.role == 'standard' %>
+        <p>By upgrading your account, you'll have access to create and share wikis that are exclusive to you and your collaborators!</p>
+        <%= link_to "Upgrade my account", new_charge_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
 
     <h3>Cancel my account</h3>
 

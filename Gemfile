@@ -20,7 +20,7 @@ gem 'rails', '4.1.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # HAML
-gem "haml-rails", "~> 0.8"
+# gem "haml-rails", "~> 0.8"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -31,6 +31,8 @@ gem 'bootstrap-sass'
 gem 'pundit'
 # Pagination
 gem 'will_paginate', '~> 3.0.5'
+# Payments with Stripe
+gem 'stripe'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby

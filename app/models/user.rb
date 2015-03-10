@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
   
   def premium?
-    role =='premium'
+    role == 'premium'
   end
   
   def set_role(role)

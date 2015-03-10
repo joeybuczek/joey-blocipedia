@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-8">
+
+    <% if current_user.role == 'standard' %>
+
+      <h1>Premium Membership Registration</h1>
+      <p>By upgrading your account, you'll have access to create and share wikis that are exclusive to you and your collaborators!</p>
+
+      <%= form_tag charges_path do %>
+        <h4>Total amount: $15.00</h4>
+        <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+      <% end %>
+  
+  <% else %>
+      <br/><br/><h4>You are already a premium user.</h4>
+      
+  <% end %>
+  
+  </div>
+</div>

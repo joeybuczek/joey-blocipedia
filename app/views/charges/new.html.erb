@@ -7,7 +7,7 @@
       <p>By upgrading your account, you'll have access to create and share wikis that are exclusive to you and your collaborators!</p>
 
       <%= form_tag charges_path do %>
-        <h4>Total amount: $15.00</h4>
+        <h4>Total amount: <%= Amount.premium_membership_price %></h4>
         <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
       <% end %>
   

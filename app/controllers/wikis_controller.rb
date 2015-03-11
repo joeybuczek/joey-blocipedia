@@ -1,6 +1,8 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.paginate(page: params[:page], per_page: 10)
+    # check for current user, if none supply one for viewing non-private wikis
+    current_user ? @user = current_user : @user = User.new(role: 'standard')
+    @wikis = Wiki.visible_to(@user).paginate(page: params[:page], per_page: 10)
     authorize @wikis
   end
 
@@ -16,10 +18,12 @@ class WikisController < ApplicationController
   
   def create
     @wiki = current_user.wikis.build(wiki_params)
+    # set default privacy setting to false to account for standard users
+    if @wiki.private.nil? then @wiki.private = false end
     authorize @wiki
     
     if @wiki.save
-      flash[:notice] = "New wiki saved!"
+      flash[:notice] = save_message
       redirect_to @wiki
     else
       flash[:error] = "There was an error creating your wiki."
@@ -38,7 +42,7 @@ class WikisController < ApplicationController
     authorize @wiki
     
     if @wiki.save
-      flash[:notice] = "Wiki saved!"
+      flash[:notice] = save_message
       redirect_to @wiki
     else
       flash[:error] = "There was an error updating your wiki."
@@ -63,7 +67,11 @@ class WikisController < ApplicationController
   private
   
   def wiki_params
-    params.require(:wiki).permit(:title, :subtitle, :body)
+    params.require(:wiki).permit(:title, :subtitle, :body, :private)
+  end
+    
+    def save_message
+    @wiki.private == true ? 'Wiki saved as private.' : 'Wiki saved!'
   end
   
 end

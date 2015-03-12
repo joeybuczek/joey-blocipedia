@@ -9,7 +9,7 @@ class MembershipsController < ApplicationController
       flash[:notice] = "You account has been successfully downgraded. All of your private wikis are now public."
       redirect_to edit_user_registration_path
     else
-      flash[:error] = "There was a error processing the account. Please try again."
+      flash[:error] = "There was an error processing the account. Please try again."
       redirect_to edit_user_registration_path
     end
   end

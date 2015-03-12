@@ -1,16 +1,43 @@
-<h1>
-    <%= @wiki.title %>
-    <%= @wiki.private == true ? '(Private)' : '' %>
-    <% if policy(@wiki).edit? %>
-      <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-default nudge-up-5' %>
-    <% end %>
-    <% if policy(@wiki).destroy? %>
-      <%= link_to "Delete", @wiki, class: 'btn btn-default nudge-up-5', method: :delete, data: { confirm: "Are you sure you want to delete this wiki?" } %>
-    <% end %>
-</h1>
-<h3><%= @wiki.subtitle %></h3>
-<small>Created at: <%= @wiki.created_at %> | Last update: <%= @wiki.updated_at %></small>
+<div class="row">
+  <div class="col-md-10 col-sm-10 col-xs-10">
 
-<hr>
+    <h1>
+      <%= @wiki.title %>
+      <span class="badge nudge-up-5"><%= @wiki.private? ? 'Private' : '' %></span>
+        
+    </h1>
+    <h3><%= @wiki.subtitle %></h3>
+    <small>
+      Created <%= time_ago_in_words(@wiki.created_at) %> ago | 
+      Updated <%= time_ago_in_words(@wiki.updated_at) %> ago
+    </small>
 
-<p><%= @wiki.body %></p>
+    <hr>
+
+    <p><%= @wiki.body %></p>
+    
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2">
+    <br/>
+    <div class="list-group">
+      <% if policy(@wiki).edit? %>
+        <%= link_to "Edit", edit_wiki_path(@wiki), class: 'list-group-item' %>
+      <% end %>
+      <% if policy(@wiki).destroy? %>
+        <%= link_to "Delete", @wiki, method: :delete, class: 'list-group-item', data: { confirm: "Are you sure you want to delete this wiki?" } %>
+      <% end %>
+      
+      <ul class="list-group-item no-bullets">
+        <li>Collaborators:</li><br/>
+        <!-- Placeholder code for collaborators -->
+        <% @users.each do |user| %>
+        <% unless (user.standard?) && (@wiki.private) %>
+            <li><%= user.name %></li>
+          <% end %>
+        <% end %>
+        
+      </ul>
+      
+    </div>
+  </div>
+</div>

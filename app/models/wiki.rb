@@ -3,4 +3,8 @@ class Wiki < ActiveRecord::Base
   
   scope :visible_to, -> (user) { (user.role == 'premium') || (user.role == 'admin') ? all : where(private: false) }
   
+  def private?
+    self.private == true
+  end
+  
 end

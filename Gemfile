@@ -33,6 +33,8 @@ gem 'pundit'
 gem 'will_paginate', '~> 3.0.5'
 # Payments with Stripe
 gem 'stripe'
+# Markdown parsing
+gem 'redcarpet'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby

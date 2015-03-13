@@ -35,6 +35,8 @@ gem 'will_paginate', '~> 3.0.5'
 gem 'stripe'
 # Markdown parsing
 gem 'redcarpet'
+# Epic Editor - Markdown
+gem 'epic-editor-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby

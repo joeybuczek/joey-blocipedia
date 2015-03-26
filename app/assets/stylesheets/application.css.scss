@@ -2,6 +2,10 @@
 @import "bootstrap";
 
 // position changes, margins, and padding
+.nudge-up-3 {
+  position: relative;
+  top: -3px;
+}
 .nudge-up-5 {
   position: relative;
   top: -5px;
@@ -13,6 +17,10 @@
 .nudge-up-12 {
   position: relative;
   top: -12px;
+}
+.nudge-down-5 {
+  position: relative;
+  top: 5px;
 }
 .nudge-down-10 {
   position: relative;
@@ -26,12 +34,18 @@
   padding: 0 10px;
   margin: 5px 0;
 }
+.margin-left-none {
+  margin-left: 0;
+}
 
 // backgrounds and borders
 .highlighter-gray {
   background-color: #f1f1f1;
   border-radius: 5px;
   border: solid 1px #ddd;
+}
+.border-lightgrey-right {
+  border-right: 1px solid #eee;
 }
 
 // colors

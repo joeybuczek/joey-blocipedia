@@ -1,0 +1,35 @@
+<p><strong>Collaborators</strong></p>
+
+<% if @wiki.user == current_user %>
+  <small class="nudge-up-10">Type the name of the user to add, or remove users below with <span class="glyphicon glyphicon-remove-circle text-dark-gray"></span>.</small>
+  <!-- <small class="nudge-up-10">Type the name of the user to add.</small> -->
+
+  <%= form_for collaborator do |f| %>
+    <%= f.hidden_field :wiki_id, value: wiki.id %>
+    <%= f.text_field :name, class: "form-control nudge-up-5" %>
+    <%= f.submit "Add", class: "btn btn-default" %>
+  <% end %>
+
+  <div class="list-group">
+    <ul class="list-group-item no-bullets nudge-down-5">
+
+      <% wiki.collaborators.each do |collaborator| %>
+        <li>
+          <%= collaborator.name %>
+          <%= link_to "", [collaborator], method: :delete, class: "glyphicon glyphicon-remove-circle text-dark-gray", data: { confirm: "Are you sure you want to remove this collaborator?" } %>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
+
+<% else %>
+  <div class="no-bullets">
+    <% @wiki.collaborators.each do |collaborator| %>
+      <li>
+        <%= collaborator.name %>
+      </li>
+    <% end %>
+  </div>
+
+<% end %>

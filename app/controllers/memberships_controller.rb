@@ -1,25 +1,25 @@
 class MembershipsController < ApplicationController
   
   def downgrade
-    @user = current_user
-    @user.set_role('standard')
     
-    if @user.save
-      private_to_public
-      flash[:notice] = "You account has been successfully downgraded. All of your private wikis are now public."
-      redirect_to edit_user_registration_path
-    else
+    # 3/14/15 - Incorporate a way to have the user's role set to standard
+    #           at the end of a subscription period (end of month, etc)
+    
+    current_user.update_attributes(:role => 'standard')
+    private_to_public
+    flash[:notice] = "Your account has been successfully downgraded. All of your private wikis are now public."
+    redirect_to edit_user_registration_path
+    
+  rescue
       flash[:error] = "There was an error processing the account. Please try again."
       redirect_to edit_user_registration_path
-    end
   end
   
-  # Set all private wikis for current user to public after downgrading account from premium to standard
+  # Set all private wikis for current user to public after downgrading 
+  # account from premium to standard
   def private_to_public
-    @user = current_user
-    @user.wikis.each do |wiki|
-      wiki.private = false
-      wiki.save
+    current_user.wikis.each do |wiki|
+      wiki.update_attributes(:private => false)
     end
   end
   

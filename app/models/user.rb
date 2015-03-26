@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :confirmable
   
   has_many :wikis
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
+  
   after_initialize :set_defaults
   
   def set_defaults
@@ -26,6 +29,7 @@ class User < ActiveRecord::Base
   
   def set_role(role)
     self.role = role
+    # Or can use current_user.update_attributes(role: 'role') for immediate changes without using a 'save' method
   end
   
 end

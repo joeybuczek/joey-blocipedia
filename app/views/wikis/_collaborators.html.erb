@@ -26,7 +26,7 @@
 <% else %>
   <div class="no-bullets">
     <% @wiki.collaborators.each do |collaborator| %>
-      <li>
+      <li class="<%= bold_if_current_user(collaborator) %>">
         <%= collaborator.name %>
       </li>
     <% end %>

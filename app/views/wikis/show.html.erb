@@ -7,7 +7,7 @@
     </h1>
     <h3><%= @wiki.subtitle %></h3>
     <small>
-      Created <%= time_ago_in_words(@wiki.created_at) %> ago | 
+      Created <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.name %> | 
       Updated <%= time_ago_in_words(@wiki.updated_at) %> ago
     </small>
 
@@ -31,7 +31,7 @@
           <li><strong>Collaborators</strong></li><br/>
 
           <% @wiki.collaborators.each do |collaborator| %>
-            <li>
+            <li class="<%= bold_if_current_user(collaborator) %>">
               <%= collaborator.name %>
             </li>
           <% end %>

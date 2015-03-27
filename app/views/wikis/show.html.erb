@@ -8,7 +8,7 @@
     <h3><%= @wiki.subtitle %></h3>
     <small>
       Created <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.name %> | 
-      Updated <%= time_ago_in_words(@wiki.updated_at) %> ago
+      Updated <%= time_ago_in_words(@wiki.updated_at) %> ago by <%= @wiki.updated_by %>
     </small>
 
     <hr>

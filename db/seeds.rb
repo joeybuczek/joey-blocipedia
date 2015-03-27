@@ -1,26 +1,26 @@
 require 'faker'
 
 # Create Ultra user (owns all content if no user assigned)
-user = User.new(
+ultra = User.new(
   name: "Ultrapedia",
   email: "ultra@blocipedia.com",
   password: "supersecret",
   password_confirmation: "supersecret",
   role: "admin"
 )
-user.skip_confirmation!
-user.save
+ultra.skip_confirmation!
+ultra.save
 
 # Create admin user
-user = User.new(
+admin = User.new(
   name: "Administrator",
   email: "admin@example.com",
   password: "password",
   password_confirmation: "password",
   role: "admin"
 )
-user.skip_confirmation!
-user.save
+admin.skip_confirmation!
+admin.save
 
 # Create standard user
 user = User.new(
@@ -40,17 +40,19 @@ user.save
     subtitle:     Faker::Lorem.sentence,
     body:         Faker::Lorem.paragraph,
     user:         admin,
+    updated_by:   "Administrator",
     private:      true
   )
 end
 
 # Create non-private wikis
-45.times do
+30.times do
   Wiki.create!(
     title:        Faker::Lorem.sentence,
     subtitle:     Faker::Lorem.sentence,
     body:         Faker::Lorem.paragraph,
     user:         ultra,
+    updated_by:   "Ultrapedia",
     private:      false
   )
 end

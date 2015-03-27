@@ -28,6 +28,7 @@ class WikisController < ApplicationController
   def create
     @wiki = current_user.wikis.build(wiki_params)
     @wiki.user = current_user
+    @wiki.update_attributes(updated_by: current_user.name)
     # set default privacy setting to false to account for standard users
     if @wiki.private.nil? then @wiki.private = false end
     authorize @wiki
@@ -52,6 +53,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.update_attributes(wiki_params)
+    @wiki.update_attributes(updated_by: current_user.name)
     authorize @wiki
     
     if @wiki.save

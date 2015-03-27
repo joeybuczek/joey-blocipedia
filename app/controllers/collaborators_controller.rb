@@ -50,12 +50,9 @@ class CollaboratorsController < ApplicationController
     redirect_to edit_wiki_path(wiki_being_edited)
   end
   
-  
-  
   def verify_user_to_add
     # User must exist && user cannot be the owner && user cannot already be a collaborator
     (user_to_add.nil? == false) && ((wiki_being_edited.user == user_to_add) == false) && ((wiki_being_edited.collaborators.where( name: name_to_use ).count > 0) == false)
   end
-  
 
 end

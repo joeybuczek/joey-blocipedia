@@ -1,16 +1,17 @@
 ## Readme
 
-** Blocipedia - a project by Joey Buczek for bloc apprenticeship **
+** Blocipedia - a project by Joey Buczek for Bloc apprenticeship **
 
-03/20/15 [In Iceland!]
- - Only wiki owners can add/remove collaborators
- - Standard users see upgrade button in public wikis, premium users do not
- - Fixed issue where users were not being associated with wikis when created (explicitly assigned user in create method). This may be because of has many through relationships
+This web app allows users to create and collaborate on public and private wikis.
 
-Next step: Scope for premium users to only view private wikis they created or ones they are collaborators on (bloc assignment text)
+**Account types:**
 
-03/21/15 [In Iceland!]
- - Added scope for viewing wikis, whether they are public, private, or if the user is a collaborator
- - adjusted the pagination gem to work with 'static arrays' instead of just database queries
- 
-Next step: Fully test the functionality of the site to search for bugs/refactor opportunities before submission
+Standard
+ - free
+ - can create and edit any public wiki
+
+Premium
+ - paid, $15 one time payment (currently)
+ - can create/edit private wikis
+ - can add collaborators to user's private wikis
+ - can transfer/accept ownership of private wikis

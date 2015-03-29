@@ -37,6 +37,8 @@ gem 'stripe'
 gem 'redcarpet'
 # Epic Editor - Markdown
 gem 'epic-editor-rails'
+# FriendlyId
+# gem "friendly_id"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby

@@ -11,7 +11,8 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    # The record has to exist AND (the record is public OR the user has a premium or admin account OR the user is a collaborator on that reecord)
+    (scope.where(:id => record.id).exists?) && (( record.public? ) || ( user.premium? || user.admin? ) || ( record.users.include?(user) ))
   end
 
   def create?

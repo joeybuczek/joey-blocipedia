@@ -1,9 +1,21 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-9 col-sm-9 col-xs-9 border-lightgrey-right">
 
     <h1>New Wiki</h1>
     
     <%= render partial: "form", locals: { wiki: @wiki } %>
+    
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-3 ">
+    <br/>
+    
+    <% if current_user.standard? %>
+      <p>Want to make this wiki private? Upgrade to a <b>Premium Account</b>, and you'll also be able to designate who gets to see and edit your wikis.</p>
+      <%= link_to "Upgrade now!", edit_user_registration_path(current_user), class: 'btn btn-primary' %>
+    <% else %>
+      <p>Writer's block? Need inspiration?</p>
+      <%= link_to "Consult an oracle", "http://www.google.com", target: "_blank", class: 'btn btn-default' %>
+    <% end %>
     
   </div>
 </div>

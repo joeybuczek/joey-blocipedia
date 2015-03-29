@@ -1,2 +1,10 @@
-<h1>Blocipedia</h1>
-<p>Create. Share. Collaborate.</p>
+<div class="jumbotron nudge-down-10">
+  <h1>Blocipedia</h1>
+  <p>Create. Share. Collaborate.</p>
+  <br/>
+  <p>A place to share your thoughts and ideas with the world in a collaborative environment!</p>
+  <p>We are <strong class="green"><%= User.count %></strong> users and <strong class="green"><%= Wiki.count %></strong> wikis strong. Help us grow!</p>
+  <%= link_to "Learn more", about_path, class: 'btn btn-primary' %>
+  or
+  <%= link_to "Sign up!", new_user_registration_path, class: 'btn btn-primary' %>
+</div>

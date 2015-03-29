@@ -1,7 +1,7 @@
 <p><strong>Collaborators</strong></p>
 
 <% if @wiki.user == current_user %>
-  <small class="nudge-up-10">Type the name of the user to add, or remove users below with <span class="glyphicon glyphicon-remove-circle text-dark-gray"></span>.</small>
+  <small class="nudge-up-10">Type the name of the user to add. Remove users with <span class="glyphicon glyphicon-remove-circle text-dark-gray"></span>. Transfer ownership with <span class="glyphicon glyphicon-transfer text-dark-gray"></span>.</small>
   <!-- <small class="nudge-up-10">Type the name of the user to add.</small> -->
 
   <%= form_for collaborator do |f| %>
@@ -16,7 +16,8 @@
       <% wiki.collaborators.each do |collaborator| %>
         <li>
           <%= collaborator.name %>
-          <%= link_to "", [collaborator], method: :delete, class: "glyphicon glyphicon-remove-circle text-dark-gray", data: { confirm: "Are you sure you want to remove this collaborator?" } %>
+          <%= link_to "", transfer_owner_path(wiki: wiki, collaborator: collaborator), class: "glyphicon glyphicon-transfer text-dark-gray", data: { confirm: "Are you sure you want to transfer ownership to #{collaborator.name}?" } %>
+          <%= link_to "", [collaborator], method: :delete, class: "glyphicon glyphicon-remove-circle text-dark-gray", data: { confirm: "Are you sure you want to remove #{collaborator.name} as a collaborator?" } %>
         </li>
       <% end %>
 

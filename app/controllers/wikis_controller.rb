@@ -3,9 +3,10 @@ class WikisController < ApplicationController
   require 'will_paginate/array'
   
   def index
-    if current_user
+    if current_user 
       # current user exists, apply policy scope for viewing wikis
       @wikis = policy_scope(Wiki).paginate(page: params[:page], per_page: 10)
+      # @wikis = Wiki.where( user: current_user ).paginate(page: params[:page], per_page: 10)
     else
       # no user exists, supply one for viewing non-private wikis
       @user = User.new(role: 'standard')
@@ -18,6 +19,11 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @users = User.all
     authorize @wiki
+    
+  rescue
+    # If the wiki doesn't exist...
+    flash[:alert] = "Sorry... either you don't have permission to view that wiki, or it doesn't exist."
+    redirect_to root_path    
   end
 
   def new
@@ -79,8 +85,32 @@ class WikisController < ApplicationController
     end
   end
     
-  def add_collaborator
-    # Get the user info from the wiki edit page
+  def transfer_owner
+    # transfer ownership to a collaborator
+    # set vars
+    wiki_to_update = Wiki.find(params.require(:wiki))
+    collaborator_to_remove = Collaborator.find(params.require(:collaborator))
+    new_owner = User.find_by_name( collaborator_to_remove.name )
+    
+    # the new owner of the wiki must be a premium account member or an admin
+    if new_owner.premium? || new_owner.admin?
+      # set new owner
+      wiki_to_update.update_attributes(user: new_owner)
+
+      # create new collaborator with previous owner
+      @collaborator = Collaborator.new(wiki_id: wiki_to_update.id, name: current_user.name, user: current_user)
+      @collaborator.save
+
+      # remove old collaborator
+      collaborator_to_remove.destroy
+
+      # let the user know xfer completed
+      flash[:notice] = "Ownership transferred to #{new_owner.name}. You are now set as a collaborator."
+    else
+      # alert as to why cannot xfer ownership
+      flash[:alert] = "Cannot transfer ownership to #{new_owner.name}. Only Premium Account members can take ownership of private wikis."
+    end
+    redirect_to edit_wiki_path(wiki_to_update)
   end
   
   private

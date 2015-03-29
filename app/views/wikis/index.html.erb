@@ -14,7 +14,7 @@
 <% @wikis.each do |wiki| %>
   <div class="highlighter-gray wiki-index-display">
     <h4>
-      <%= link_to wiki.title, wiki_path(wiki.id) %>
+      <%= link_to wiki.title, wiki_path(wiki) %>
       <span class="badge nudge-up-3"><%= wiki.private? ? 'Private' : '' %></span>
     </h4>
     <small class="nudge-up-10"><%= wiki.subtitle %></small>

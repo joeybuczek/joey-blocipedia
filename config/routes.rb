@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :collaborators
   
   get 'memberships/downgrade' => 'memberships#downgrade', as: :downgrade
+  get '/transfer_owner', to: 'wikis#transfer_owner', as: :transfer_owner
 
   devise_for :users
     
